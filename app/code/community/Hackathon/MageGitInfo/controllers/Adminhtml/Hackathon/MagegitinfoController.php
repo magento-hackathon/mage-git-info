@@ -35,34 +35,60 @@
  * @version   $Id:$
  * @since     0.1.0
  */
-class Hackathon_MageGitInfo_Adminhtml_Hackathon_MagegitInfoController extends Mage_Adminhtml_Controller_Action
+class Hackathon_MageGitInfo_Adminhtml_Hackathon_MagegitInfoController 
+    extends Mage_Adminhtml_Controller_Action
 {
+    public function getSession()
+    {
+        return Mage::getSingleton('core/session');
+    }
+
     /**
      * Update the git information block
      */
     public function changeBranchAction()
     {
-        $session = Mage::getSingleton('core/session');
+        $session = $this->getSession();
         $helper = Mage::helper("magegitinfo/data");
         if (!$this->isAllowed()) {
-            $session->addError($helper->__('You are not allowed to switch branches'));
+            $msg = 'You are not allowed to switch branches';
+            $session->addError($helper->__($msg));
         } else {
             $branch = $this->getRequest()->getParam("branch");
             //Security - check if branch exist
-            if (false === in_array($branch, Mage::getModel("magegitinfo/git_branch")->branch()->getBranches())) {
-                $session->addError($helper->__('Branch %d does not exists', $branch));
+            if (false === in_array($branch, $this->getBranches())) {
+                $msg = 'Branch %d does not exists';
+                $session->addError($helper->__($msg, $branch));
             } else {
-                try {
-                    Mage::getModel("magegitinfo/git_checkout")->changeBranch($branch);
-                    $session->addSuccess($helper->__('Successfully switched to branche %s', $branch));
-                } catch (Hackathon_MageGitInfo_Model_Git_Exception $e) {
-                    if (128 == $e->getErrorCode()) {
-                        $session->addError($helper->__('Your webserver has no permissions to switch branches'));
-                    }
-                }
+                $this->switchBranch($branch);
             }
         }
         $this->_redirectReferer();
+    }
+
+    protected function switchBranch($branch)
+    {
+        $session = $this->getSession();
+        $helper = Mage::helper("magegitinfo/data");
+        try {
+            Mage::getModel("magegitinfo/git_checkout")->changeBranch($branch);
+            $msg = 'Successfully switched to branche %s';
+            $session->addSuccess($helper->__($msg , $branch));
+        } catch (Hackathon_MageGitInfo_Model_Git_Exception $e) {
+            if (128 == $e->getErrorCode()) {
+                $msg = 'Your webserver has no permissions to switch branches';
+                $session->addError($helper->__($msg));
+            } else {
+                Mage::logException($e);
+            }
+        }
+    }
+
+    protected function getBranches()
+    {
+        return Mage::getModel("magegitinfo/git_branch")
+            ->branch()
+            ->getBranches();
     }
 
     protected function isAllowed()
