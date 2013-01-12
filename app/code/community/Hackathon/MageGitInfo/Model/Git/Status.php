@@ -42,7 +42,6 @@ class Hackathon_MageGitInfo_Model_Git_Status extends Hackathon_MageGitInfo_Model
     const MODE_UNTRACKED_FILES = 'mode untracked';
     const MODE_UNTRACKED_FILES_AFTER = 'mode untracked after'; 
 
-    protected $currentBranch = 'master';
     protected $changedFiles = array();
     protected $untrackedFiles = array();
 
@@ -59,11 +58,6 @@ class Hackathon_MageGitInfo_Model_Git_Status extends Hackathon_MageGitInfo_Model
             }
         }
         return $this;
-    }
-
-    public function getCurrentBranch()
-    {
-        return $this->currentBranch;
     }
 
     public function getState()
