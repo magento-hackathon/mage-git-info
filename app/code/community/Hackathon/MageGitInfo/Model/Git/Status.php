@@ -38,6 +38,10 @@ class Hackathon_MageGitInfo_Model_Git_Status extends Hackathon_MageGitInfo_Model
     const STATE_CLEAN = 'clean';
     const STATE_DIRTY = 'dirty';
 
+    const MODE_UNTRACKED_BEFORE_FILES = 'mode before untracked';
+    const MODE_UNTRACKED_FILES = 'mode untracked';
+    const MODE_UNTRACKED_FILES_AFTER = 'mode untracked after'; 
+
     protected $currentBranch = 'master';
     protected $changedFiles = array();
     protected $untrackedFiles = array();
@@ -45,9 +49,25 @@ class Hackathon_MageGitInfo_Model_Git_Status extends Hackathon_MageGitInfo_Model
     public function status()
     {
         $this->exec('git status');
+        
         foreach ($this->output as $line) {
+            if (preg_match('/^# On branch \(.*\)/', $line, $matches)) {
+                print_r($matches);
+            }
+            else if ('# Untracked files:' == $line) {
+                $this->mode = self::MODE_UNTRACKED_BEFORE_FILES;
+            }
+            else if ($this->mode == self::MODE_UNTRACKED_BEFORE_FILES && $line == '#') {
+                $this->mode = self::MODE_UNTRACKED_FILES;
+            }
+            else if ($this->mode == self::MODE_UNTRACKED_FILES && $line == '#') {
+                $this->mode = self::MODE_UNTRACKED_FILES_AFTER;
+            }
+            else if ($this->mode == self::MODE_UNTRACKED_FILES && $line != '#') {
+                $this->untrackedFiles[] = preg_replace('/^#\t/','', $line);
+            }
         }
-        var_dump($this);
+        var_dump($this->untrackedFiles);
     }
 
     public function getCurrentBranch()
