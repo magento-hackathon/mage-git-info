@@ -38,7 +38,7 @@
         public $output = array();
 
         public function gitLog($numberOfLogs='1') {
-            $statement = 'git log -v -n' . $numberOfLogs;
+            $statement = 'log -v -n' . $numberOfLogs;
             $this->exec($statement);
             $output = $this->output;
             foreach ($output as $line){

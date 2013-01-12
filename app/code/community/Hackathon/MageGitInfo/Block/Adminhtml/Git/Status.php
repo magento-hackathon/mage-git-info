@@ -45,7 +45,12 @@ class Hackathon_MageGitInfo_Block_Adminhtml_Git_Status extends Hackathon_MageGit
      */
     protected function _construct()
     {
-        $this->status = Mage::getModel("magegitinfo/git_status")->status();
+        try {
+            $this->status = Mage::getModel("magegitinfo/git_status");
+            $this->status->status();
+        } catch (Hackathon_MageGitInfo_Model_Git_Exception $e) {
+            // TODO: Add execption handling
+        }
     }
 
     public function getStatus()
