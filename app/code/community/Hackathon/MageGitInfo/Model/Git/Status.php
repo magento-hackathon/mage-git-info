@@ -38,9 +38,9 @@ class Hackathon_MageGitInfo_Model_Git_Status extends Hackathon_MageGitInfo_Model
     const STATE_CLEAN = 'clean';
     const STATE_DIRTY = 'dirty';
 
-    protected currentBranch = 'master';
-    protected changedFiles = array();
-    protected untrackedFiles = array();
+    protected $currentBranch = 'master';
+    protected $changedFiles = array();
+    protected $untrackedFiles = array();
 
     public function status()
     {
