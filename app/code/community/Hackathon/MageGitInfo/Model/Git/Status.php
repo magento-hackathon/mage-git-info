@@ -33,44 +33,44 @@
  * @version   $Id:$
  * @since     0.1.0
  */
-class Hackathon_MageGitInfo_Model_Git
+class Hackathon_MageGitInfo_Model_Git_Status extends Hackathon_MageGitInfo_Model_Git
 {
-    /**
-     * @var string
-     */
-    protected $lastLine = "";
+    const STATE_CLEAN = 'clean';
+    const STATE_DIRTY = 'dirty';
 
-    /**
-     * @var array
-     */
-    protected $output = array();
+    protected currentBranch = 'master';
+    protected changedFiles = array();
+    protected untrackedFiles = array();
 
-    /**
-     * @var int
-     */
-    protected $statusCode = null;
-
-    /**
-     * @param sring $statement
-     * @returns string
-     * @throws Hackathon_MageGitInfo_Model_Git_Exception
-     */
-    public function exec($statement)
+    public function status()
     {
-        $output = array();
-        $statusCode = null;
-
-        try {
-            $this->lastLine = exec($statement, $this->output, $this->statusCode);
-
-            if (0 != $this->statusCode) {
-                throw Hackathon_MageGitInfo_Model_Git_Exception(
-                    Mage::helper("magegitinfo")->__("Excec command returned with status code %s", $this->statusCode)
-                );
-            }
-        } catch (Exception $e) {
-            throw $e;
+        $this->exec('git status');
+        foreach ($this->output as $line) {
         }
+        var_dump($this);
+    }
 
+    public function getCurrentBranch()
+    {
+        return $this->currentBranch;
+    }
+
+    public function getCurrentBranch()
+    {
+        if (count($this->changedFiles) || count($this->untrackedFiles)) {
+            return self::STATE_DIRTY;
+        }
+        return STATE_CLEAN;
+    }
+
+    public function getChangedFiles()
+    {
+        return $this->changedFiles;
+    }
+
+    public function getUntrackedFiles()
+    {
+        return $this->untrackedFiles;
     }
 }
+
