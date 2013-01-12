@@ -40,15 +40,24 @@ class Hackathon_MageGitInfo_Model_Log extends Hackathon_MageGitInfo_Model_Git
     public $output = array();
 
     public function gitLog($numberOfLogs='1') {
-        $statement = 'log -v -n' . $numberOfLogs;
+        $statement = 'log -v -n' . (string)$numberOfLogs;
         $this->exec($statement);
         $output = $this->output;
+        $formattedLogsString = '';
         foreach ($output as $line){
             if ($line != '' && is_numeric(strpos($line, 'commit')) || is_numeric(strpos($line, 'Author'))) {
-                $line = str_replace('commit', '',$line);
+                if (is_numeric(strpos($line, 'commit')) & strpos($line, 'commit') == 0) {
+                    $line = str_replace('commit', '',$line);
+                    $class = 'commit';
+                } elseif (is_numeric(strpos($line, 'Author'))) {
+                    $class = 'author';
+                } else {
+                    $class = 'comment';
+                }
                 $formattedLogs[] = $line;
+                $formattedLogsString = $formattedLogsString . '<span class="'. $class . '">' . $line . '</span></br>';
             }
         }
-        return $formattedLogs;
+        return $formattedLogsString;
     }
 }
