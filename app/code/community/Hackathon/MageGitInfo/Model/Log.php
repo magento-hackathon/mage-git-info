@@ -44,9 +44,9 @@
             foreach ($output as $line){
                 if ($line != '' && is_numeric(strpos($line, 'commit')) || is_numeric(strpos($line, 'Author'))) {
                     $line = str_replace('commit', '',$line);
-                    $logsForOutput[] = $line;
+                    $formattedLogs[] = $line;
                 }
             }
-            return $logsForOutput;
+            return $formattedLogs;
         }
     }
