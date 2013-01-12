@@ -37,6 +37,8 @@
  */
 class Hackathon_MageGitInfo_Model_Git
 {
+    const GIT_BINARY_NAME = 'git';
+
     /**
      * @var string
      */
@@ -52,6 +54,16 @@ class Hackathon_MageGitInfo_Model_Git
      */
     protected $statusCode = null;
 
+    protected function _getGitBinary()
+    {
+        $gitName = Mage::getStoreConfig('magegitinfo/params/git_binary');
+        if (file_exists($gitName) && is_executable($gitName)) {
+            return $gitName;
+        } else {
+            return self::GIT_BINARY_NAME;
+        }
+    }
+
     /**
      * @param sring $statement
      * @returns string
@@ -63,6 +75,7 @@ class Hackathon_MageGitInfo_Model_Git
         $statusCode = null;
 
         try {
+            $statement = escapeshellarg($this->_getGitBinary()). ' ' . $statement;
             $this->lastLine = exec($statement, $this->output, $this->statusCode);
 
             if (0 != $this->statusCode) {
