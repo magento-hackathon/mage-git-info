@@ -3,3 +3,4 @@ app/code/community/Hackathon/MageGitInfo app/code/community/Hackathon/MageGitInf
 shell/mage_git_test.php shell/mage_git_test.php
 app/design/adminhtml/default/default/layout/magegitinfo.xml app/design/adminhtml/default/default/layout/magegitinfo.xml
 app/design/adminhtml/default/default/template/magegitinfo app/design/adminhtml/default/default/template/magegitinfo
+skin/adminhtml/default/default/magegitinfo.css skin/adminhtml/default/default/magegitinfo.css
