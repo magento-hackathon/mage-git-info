@@ -1,6 +1,5 @@
 <?php $status = $this->getStatus(); ?>
 <ul>
-    <li><?php echo $this->__("Current branch: ");?> <?php echo $status->getCurrentBranch(); ?></li>
     <li>
         <?php if (false === $status->isDirty()): ?>
         <?php echo $this->__("Workspace is clean"); ?>
