@@ -23,7 +23,7 @@
  * @since     0.1.0
  */
 /**
- * Dummy data helper for translation issues.
+ * Block abstract class
  *
  * @category  MageGitInfo
  * @package   Hackathon_MageGitInfo
