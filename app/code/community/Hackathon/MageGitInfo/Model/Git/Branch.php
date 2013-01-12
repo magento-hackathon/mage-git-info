@@ -17,7 +17,6 @@
  * @author    Tom Kadwill <tomkadwill@gmail.com>
  * @author    Stephan Hoyer <ste.hoyer@gmail.com>
  * @author    André Herrn <info@andre-herrn.de>
- * @author    Anjey Lobas <anjey.lobas@goodahead.com>
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @version   $Id:$
  * @since     0.1.0
@@ -30,33 +29,45 @@
  * @author    Tom Kadwill <tomkadwill@gmail.com>
  * @author    Stephan Hoyer <ste.hoyer@gmail.com>
  * @author    André Herrn <info@andre-herrn.de>
- * @author    Anjey Lobas <anjey.lobas@goodahead.com>
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @version   $Id:$
  * @since     0.1.0
  */
-class Hackathon_MageGitInfo_Model_Observer
+class Hackathon_MageGitInfo_Model_Git_Branch extends Hackathon_MageGitInfo_Model_Git
 {
     /**
-     * Append parcel announcement to html output.
-     *
-     * @param  $observer
-     * @return void
+     * @var array
      */
-    public function appendGitInfoToFooter($observer)
+    protected $branches = array();
+
+    /**
+     * @var string
+     */
+    protected $currentBranch = "";
+
+    public function branch()
     {
-        if ($observer->getBlock() instanceof Mage_Adminhtml_Block_Page_Footer
-            && true === Mage::getModel("magegitinfo/config")->getIsActive()) {
-            $transport = $observer->getTransport();
-            $block     = $observer->getBlock();
-            $layout    = $block->getLayout();
-            $html      = $transport->getHtml();
+        $this->exec('branch');
 
-            $mageGitInfoFooterHtml = $layout->getBlock("magegitinfo_wrapper")->renderView();
-            $html = $html . $mageGitInfoFooterHtml;
-
-            $transport->setHtml($html);
+        foreach ($this->output as $line) {
+            $state = substr($line, 0, 1);
+            $branch = substr($line, 2);
+            if ('*' == $state) {
+                $this->currentBranch = $branch;
+            }
+            $this->branches[] = $branch;
         }
+        return $this;
     }
 
+    public function getCurrentBranch()
+    {
+        return $this->currentBranch;
+    }
+
+    public function getBranches()
+    {
+        return $this->branches;
+    }
 }
+
