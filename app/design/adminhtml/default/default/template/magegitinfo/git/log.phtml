@@ -1,1 +1,11 @@
-<?php echo $logs = $this->displayLogs(); ?>
+<?php $helper = Mage::helper("magegitinfo/data"); ?>
+<?php foreach($this->getLogEntries() as $log): ?>
+    <li>
+        <?php echo $helper->__("Commit: %s", $log["hash"]);?>
+        <ul>
+            <li><?php echo $helper->__("Date: %s", $log["date"]);?></li>
+            <li><?php echo $helper->__("Author: %s", $log["author"]);?></li>
+            <li><?php echo $helper->__("Message: %s", $log["message"]);?></li>
+        </ul>
+    </li>
+<?php endforeach;?>

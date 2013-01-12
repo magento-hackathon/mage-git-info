@@ -37,14 +37,29 @@
  */
 class Hackathon_MageGitInfo_Block_Adminhtml_Git_Log extends Hackathon_MageGitInfo_Block_Adminhtml_Git_Abstract
 {
-    public function displayLogs() {
+    /**
+     * @var Hackathon_MageGitInfo_Model_Log
+     */
+    protected $log;
+
+    /**
+     * Constructor
+     */
+    protected function _construct()
+    {
+        $this->log = Mage::getModel("magegitinfo/log")->log(
+            Mage::getStoreConfig('magegitinfo/params/number_of_logs')
+        );
+    }
+
+    public function getLogEntries() {
+        $helper = Mage::helper("magegitinfo/data");
         try {
-            $logs = Mage::getModel("magegitinfo/log")->gitLog(
-                Mage::getStoreConfig('magegitinfo/params/number_of_logs')
-            );
-            return $logs;
+            return $this->log->getLogEntries();
         } catch (Hackathon_MageGitInfo_Model_Git_Exception $e) {
-            return array();
+            $helper->log(
+                $helper->__("Error to retrieve log entries with message '%s'", $e->getMessage())
+            );
         }
     }
 }
