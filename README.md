@@ -4,7 +4,7 @@
 
 * Magento
 * Git
-* exec()
+* proc_open()
 * Apache user needs rights to write .git-repository (only for change branch feature)
 
 Magento Module to show the git branch of the current Magento (possible switch branches as well).
