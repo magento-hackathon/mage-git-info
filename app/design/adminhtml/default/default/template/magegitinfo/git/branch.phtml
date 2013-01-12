@@ -1,5 +1,19 @@
-<?php echo $this->getCurrentBranch() ?>
-<?php foreach ($this->getBranches() as $branch): ?>
-    <?php echo $branch; ?>
-<?php endforeach; ?>
-
+<select name="branch" id="branch">
+    <?php foreach ($this->getBranches() as $branch): ?>
+        <option value="<?php echo $branch; ?>"<?php if ($branch == $this->getCurrentBranch()): ?>selected="selected"<?php endif; ?>>
+            <?php echo $branch; ?>
+        </option>
+    <?php endforeach; ?>
+</select>
+<script type="text/javascript">
+(function () {
+    function switchBranch(evt) {
+        var elem = Event.element(evt);
+        if(elem){
+            var value = elem.value;
+            setLocation('#');
+        }
+    }
+    Event.observe('branch', 'change', switchBranch)
+}());
+</script>

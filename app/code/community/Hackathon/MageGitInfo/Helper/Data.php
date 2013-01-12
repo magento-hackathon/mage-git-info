@@ -23,7 +23,7 @@
  * @since     0.1.0
  */
 /**
- * Dummy data helper for translation issues.
+ * Data helper for logging and translation
  *
  * @category  MageGitInfo
  * @package   Hackathon_MageGitInfo

@@ -23,7 +23,7 @@
  * @since     0.1.0
  */
 /**
- * Dummy data helper for translation issues.
+ * Git Log Command Class
  *
  * @category  MageGitInfo
  * @package   Hackathon_MageGitInfo
@@ -35,20 +35,29 @@
  * @version   $Id:$
  * @since     0.1.0
  */
-    class Hackathon_MageGitInfo_Model_Log extends Hackathon_MageGitInfo_Model_Git
-    {
-        public $output = array();
+class Hackathon_MageGitInfo_Model_Log extends Hackathon_MageGitInfo_Model_Git
+{
+    public $output = array();
 
-        public function gitLog($numberOfLogs='1') {
-            $statement = 'log -v -n' . $numberOfLogs;
-            $this->exec($statement);
-            $output = $this->output;
-            foreach ($output as $line){
-                if ($line != '' && is_numeric(strpos($line, 'commit')) || is_numeric(strpos($line, 'Author'))) {
+    public function gitLog($numberOfLogs='1') {
+        $statement = 'log -v -n' . (string)$numberOfLogs;
+        $this->exec($statement);
+        $output = $this->output;
+        $formattedLogsString = '';
+        foreach ($output as $line){
+            if ($line != '' && is_numeric(strpos($line, 'commit')) || is_numeric(strpos($line, 'Author'))) {
+                if (is_numeric(strpos($line, 'commit')) & strpos($line, 'commit') == 0) {
                     $line = str_replace('commit', '',$line);
-                    $formattedLogs[] = $line;
+                    $class = 'commit';
+                } elseif (is_numeric(strpos($line, 'Author'))) {
+                    $class = 'author';
+                } else {
+                    $class = 'comment';
                 }
+                $formattedLogs[] = $line;
+                $formattedLogsString = $formattedLogsString . '<span class="'. $class . '">' . $line . '</span></br>';
             }
-            return $formattedLogs;
         }
+        return $formattedLogsString;
     }
+}
