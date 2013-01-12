@@ -48,25 +48,14 @@ class Hackathon_MageGitInfo_Model_Git_Status extends Hackathon_MageGitInfo_Model
 
     public function status()
     {
-        $this->exec('git status');
+        $this->exec('git status --porcelain');
         
         foreach ($this->output as $line) {
-            if (preg_match('/^# On branch (.*)/', $line, $matches)) {
-                if (count($matches) == 2) {
-                    $this->currentBranch = $matches[1];
-                }
-            }
-            else if ('# Untracked files:' == $line) {
-                $this->mode = self::MODE_UNTRACKED_BEFORE_FILES;
-            }
-            else if ($this->mode == self::MODE_UNTRACKED_BEFORE_FILES && $line == '#') {
-                $this->mode = self::MODE_UNTRACKED_FILES;
-            }
-            else if ($this->mode == self::MODE_UNTRACKED_FILES && $line == '#') {
-                $this->mode = self::MODE_UNTRACKED_FILES_AFTER;
-            }
-            else if ($this->mode == self::MODE_UNTRACKED_FILES && $line != '#') {
-                $this->untrackedFiles[] = preg_replace('/^#\t/','', $line);
+            $state = substr($line, 0, 2);
+            $file = substr($line, 3);
+            switch ($state) {
+                case '??': $this->untrackedFiles[] = file; break;
+                case ' M': $this->changedFiles[] = file; break;
             }
         }
         return $this;
