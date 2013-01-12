@@ -32,5 +32,8 @@
                 <block type="magegitinfo/adminhtml_git_log" name="magegitinfo_log" template="magegitinfo/git/log.phtml" />
             </block>
         </reference>
+        <reference name="head">
+            <action method="addCss"><name>magegitinfo.css</name></action>
+        </reference>
     </default>
 </layout>
