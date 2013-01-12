@@ -17,6 +17,7 @@
  * @author    Tom Kadwill <tomkadwill@gmail.com>
  * @author    Stephan Hoyer <ste.hoyer@gmail.com>
  * @author    André Herrn <info@andre-herrn.de>
+ * @author    Anjey Lobas <anjey.lobas@goodahead.com>
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @version   $Id:$
  * @since     0.1.0
@@ -29,6 +30,7 @@
  * @author    Tom Kadwill <tomkadwill@gmail.com>
  * @author    Stephan Hoyer <ste.hoyer@gmail.com>
  * @author    André Herrn <info@andre-herrn.de>
+ * @author    Anjey Lobas <anjey.lobas@goodahead.com>
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @version   $Id:$
  * @since     0.1.0
