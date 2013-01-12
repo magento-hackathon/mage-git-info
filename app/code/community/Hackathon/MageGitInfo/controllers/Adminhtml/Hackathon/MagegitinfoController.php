@@ -35,7 +35,7 @@
  * @version   $Id:$
  * @since     0.1.0
  */
-class Hackathon_MageGitInfo_Adminhtml_MagegitInfoController extends Mage_Adminhtml_Controller_Action
+class Hackathon_MageGitInfo_Adminhtml_Hackathon_MagegitInfoController extends Mage_Adminhtml_Controller_Action
 {
     /**
      * Update the git information block
@@ -57,8 +57,7 @@ class Hackathon_MageGitInfo_Adminhtml_MagegitInfoController extends Mage_Adminht
             );
         }
 
-        $this->loadLayout();
-        $this->renderLayout();
+        $this->_redirectReferer();
 
     }
 
