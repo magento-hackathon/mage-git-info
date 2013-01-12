@@ -22,6 +22,16 @@
                 <class>Hackathon_MageGitInfo_Helper</class>
             </magegitinfo>
         </helpers>
+        <events>
+            <core_block_abstract_to_html_after>
+                <observers>
+                    <append_git_info_to_footer>
+                        <class>magegitinfo/observer</class>
+                        <method>appendGitInfoToFooter</method>
+                    </append_git_info_to_footer>
+                </observers>
+            </core_block_abstract_to_html_after>
+        </events>
     </global>
     <admin>
         <routers>
