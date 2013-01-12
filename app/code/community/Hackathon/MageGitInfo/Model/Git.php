@@ -74,20 +74,15 @@ class Hackathon_MageGitInfo_Model_Git
         $output = array();
         $statusCode = null;
 
-        try {
-            $statement = escapeshellarg($this->_getGitBinary()). ' ' . $statement;
-            Mage::helper("magegitinfo/data")->log($statement);
-            $this->lastLine = exec($statement, $this->output, $this->statusCode);
+        $statement = escapeshellarg($this->_getGitBinary()). ' ' . $statement;
+        Mage::helper("magegitinfo/data")->log($statement);
+        $this->lastLine = exec($statement, $this->output, $this->statusCode);
 
-            if (0 != $this->statusCode) {
-                throw new Hackathon_MageGitInfo_Model_Git_Exception(
-                    $this->statusCode,
-                    $this->output
-                );
-            }
-        } catch (Exception $e) {
-            throw $e;
+        if (0 != $this->statusCode) {
+            throw new Hackathon_MageGitInfo_Model_Git_Exception(
+                $this->statusCode,
+                $this->output
+            );
         }
-
     }
 }

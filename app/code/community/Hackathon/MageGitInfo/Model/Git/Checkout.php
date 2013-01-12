@@ -51,9 +51,7 @@ class Hackathon_MageGitInfo_Model_Git_Checkout extends Hackathon_MageGitInfo_Mod
             );
         }
 
-        $this->exec(
-            sprintf("checkout %s", $branchName)
-        );
+        $this->exec(sprintf("checkout %s", $branchName));
 
         return $this;
     }
