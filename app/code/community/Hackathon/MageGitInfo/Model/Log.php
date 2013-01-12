@@ -42,10 +42,11 @@
             $this->exec($statement);
             $output = $this->output;
             foreach ($output as $line){
-                if ($line != '') {
-                    Mage::log($line);
+                if ($line != '' && is_numeric(strpos($line, 'commit')) || is_numeric(strpos($line, 'Author'))) {
+                    $line = str_replace('commit', '',$line);
+                    $logsForOutput[] = $line;
                 }
             }
-            return $output;
+            return $logsForOutput;
         }
     }
