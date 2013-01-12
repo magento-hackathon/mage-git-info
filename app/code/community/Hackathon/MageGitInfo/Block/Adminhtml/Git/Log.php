@@ -34,4 +34,9 @@
  * @since     0.1.0
  */
 class Hackathon_MageGitInfo_Block_Adminhtml_Git_Log extends Hackathon_MageGitInfo_Block_Adminhtml_Git_Abstract
-{ }
+{
+    public function displayLogs() {
+        $logs = Mage::getModel("magegitinfo/log")->gitLog('1');
+        return $logs;
+    }
+}
