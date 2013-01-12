@@ -55,4 +55,11 @@
     </adminhtml>
     <frontend>
     </frontend>
+    <default>
+        <magegitinfo>
+            <params>
+                <number_of_logs>"5"</number_of_logs>
+            </params>
+        </magegitinfo>
+    </default>
 </config>

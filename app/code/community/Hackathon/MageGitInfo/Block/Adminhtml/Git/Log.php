@@ -36,8 +36,9 @@
 class Hackathon_MageGitInfo_Block_Adminhtml_Git_Log extends Hackathon_MageGitInfo_Block_Adminhtml_Git_Abstract
 {
     public function displayLogs() {
-        $numberOfLogs = Mage::getStoreConfig('magegitinfo/wsalog/number_of_logs');
-        $logs = Mage::getModel("magegitinfo/log")->gitLog($numberOfLogs);
+        $logs = Mage::getModel("magegitinfo/log")->gitLog(
+            Mage::getStoreConfig('magegitinfo/params/number_of_logs')
+        );
         return $logs;
     }
 }
