@@ -49,7 +49,7 @@ class Hackathon_MageGitInfo_Model_Git_Status extends Hackathon_MageGitInfo_Model
 
     public function status()
     {
-        $this->exec('git status --porcelain');
+        $this->exec('status --porcelain');
         
         foreach ($this->output as $line) {
             $state = substr($line, 0, 2);
@@ -67,7 +67,7 @@ class Hackathon_MageGitInfo_Model_Git_Status extends Hackathon_MageGitInfo_Model
         if (count($this->changedFiles) || count($this->untrackedFiles)) {
             return self::STATE_DIRTY;
         }
-        return STATE_CLEAN;
+        return self::STATE_CLEAN;
     }
 
     public function getChangedFiles()

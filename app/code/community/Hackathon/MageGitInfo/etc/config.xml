@@ -96,6 +96,7 @@
     <default>
         <magegitinfo>
             <params>
+                <git_binary>git</git_binary>
                 <number_of_logs>"5"</number_of_logs>
             </params>
         </magegitinfo>
