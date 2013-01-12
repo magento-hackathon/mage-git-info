@@ -39,7 +39,7 @@
 -->
 <config>
     <sections>
-        <magegitinfo translate="label">
+        <magegitinfo translate="label" module="magegitinfo">
             <label>Git Info</label>
             <tab>advanced</tab>
             <frontend_type>text</frontend_type>
@@ -62,16 +62,16 @@
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>10</sort_order>
                             <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
                         </active>
                         <number_of_logs>
                             <label>Number of Logs</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>20</sort_order>
                             <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
                         </number_of_logs>
                     </fields>
                 </params>
