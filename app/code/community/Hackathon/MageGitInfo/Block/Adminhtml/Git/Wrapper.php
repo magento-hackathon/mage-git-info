@@ -41,16 +41,15 @@ class Hackathon_MageGitInfo_Block_Adminhtml_Git_Wrapper extends Hackathon_MageGi
     public function getJsonConfig()
     {
         return Mage::helper('core')->jsonEncode(array(
-            // TODO: Add config value for that
-            'updateTimeout' => 5000,
+            'updateTimeout' => Mage::getStoreConfig('magegitinfo/ajax/update_interval') * 1000,
             'updateUrl'     => $this->getUrl('adminhtml/hackathon_mageGitInfo_ajax/mageGitUpdate'),
         ));
     }
     
     public function getIncludeUpdater()
     {
-        // TODO: add config option for enable/disable ajax updates
-        return !$this->getRequest()->isAjax();//Mage::getStoreConfig($path)
+        return Mage::getStoreConfig('magegitinfo/ajax/enabled') && 
+            !$this->getRequest()->isAjax();
     }
 
 }
