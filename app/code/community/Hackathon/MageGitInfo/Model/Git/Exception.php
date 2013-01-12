@@ -65,7 +65,7 @@ class Hackathon_MageGitInfo_Model_Git_Exception extends Mage_Core_Exception
 
         //Error Logging
         $helper->log($errorMessage);
-        $helper->log($this->__toString());
+        $helper->log(implode("\n", $output));
     }
 
     /**
@@ -77,14 +77,8 @@ class Hackathon_MageGitInfo_Model_Git_Exception extends Mage_Core_Exception
         return $this->_gitOutput;
     }
 
-    /**
-     * @return string|void
-     */
-    public function __toString()
+    public function getErrorCode()
     {
-        $output =  parent::__toString();
-        if (is_array($this->getGitOutput())) {
-            $output  .= "\n" . implode("\n", $this->getGitOutput());
-        }
+        return $this->code;
     }
 }

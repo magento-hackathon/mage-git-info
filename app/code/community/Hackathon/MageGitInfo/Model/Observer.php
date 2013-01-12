@@ -45,8 +45,9 @@ class Hackathon_MageGitInfo_Model_Observer
      */
     public function appendGitInfoToFooter($observer)
     {
-        if ($observer->getBlock() instanceof Mage_Adminhtml_Block_Page_Footer
-            && true === Mage::getModel("magegitinfo/config")->getIsActive()) {
+        if ($this->isFooterBlock($observer->getBlock()) &&
+            $this->isAllowed() && $this->isActive()) {
+
             $transport = $observer->getTransport();
             $block     = $observer->getBlock();
             $layout    = $block->getLayout();
@@ -59,4 +60,18 @@ class Hackathon_MageGitInfo_Model_Observer
         }
     }
 
+    protected function isActive()
+    {
+        return Mage::getModel("magegitinfo/config")->getIsActive();
+    }
+
+    protected function isFooterBlock($block)
+    {
+        return $block instanceof Mage_Adminhtml_Block_Page_Footer;
+    }
+
+    protected function isAllowed()
+    {
+        return Mage::getSingleton('admin/session')->isAllowed('admin/show_git_info');
+    }
 }
