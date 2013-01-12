@@ -99,6 +99,7 @@
                 <active>0</active>
                 <git_binary>git</git_binary>
                 <number_of_logs>"5"</number_of_logs>
+                <logging>1</logging>
             </params>
         </magegitinfo>
     </default>

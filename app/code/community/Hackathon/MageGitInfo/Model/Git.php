@@ -76,6 +76,7 @@ class Hackathon_MageGitInfo_Model_Git
 
         try {
             $statement = escapeshellarg($this->_getGitBinary()). ' ' . $statement;
+            Mage::helper("magegitinfo/data")->log($statement);
             $this->lastLine = exec($statement, $this->output, $this->statusCode);
 
             if (0 != $this->statusCode) {
