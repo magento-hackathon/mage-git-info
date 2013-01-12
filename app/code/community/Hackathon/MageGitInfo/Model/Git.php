@@ -36,6 +36,21 @@
 class Hackathon_MageGitInfo_Model_Git
 {
     /**
+     * @var string
+     */
+    protected $lastLine = "";
+
+    /**
+     * @var array
+     */
+    protected $output = array();
+
+    /**
+     * @var int
+     */
+    protected $statusCode = null;
+
+    /**
      * @param sring $statement
      * @returns string
      * @throws Hackathon_MageGitInfo_Model_Git_Exception
@@ -45,10 +60,6 @@ class Hackathon_MageGitInfo_Model_Git
         $output = array();
         $statusCode = null;
 
-        $lastLine = exec($statement, $output, $statusCode);
-
-        var_dump($lastLine);
-        var_dump($output);
-        var_dump($statusCode);
+        $this->lastLine = exec($statement, $this->output, $this->statusCode);
     }
 }
