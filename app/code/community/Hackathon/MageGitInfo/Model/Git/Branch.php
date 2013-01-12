@@ -39,7 +39,7 @@ class Hackathon_MageGitInfo_Model_Git_Branch extends Hackathon_MageGitInfo_Model
 
     public function branch()
     {
-        $this->exec('git branch');
+        $this->exec('branch');
 
         foreach ($this->output as $line) {
             $state = substr($line, 0, 1);
