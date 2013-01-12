@@ -1,3 +1,5 @@
 app/etc/modules/Hackathon_MageGitInfo.xml app/etc/modules/Hackathon_MageGitInfo.xml
 app/code/community/Hackathon/MageGitInfo app/code/community/Hackathon/MageGitInfo
 shell/mage_git_test.php shell/mage_git_test.php
+app/design/adminhtml/default/default/layout/magegitinfo.xml app/design/adminhtml/default/default/layout/magegitinfo.xml
+app/design/adminhtml/default/default/template/magegitinfo app/design/adminhtml/default/default/template/magegitinfo
