@@ -1,5 +1,58 @@
-<div class="git_informations">
+<div id="gitInfo" class="git_informations">
     <ul class="branch"><?php echo $this->getChildHtml('magegitinfo_branch') ?></ul>
     <ul class="status"><?php echo $this->getChildHtml('magegitinfo_status') ?></ul>
     <ul class="log"><?php echo $this->getChildHtml('magegitinfo_log') ?></ul>
 </div>
+<?php if ($this->getIncludeUpdater()): ?>
+<script type="text/javascript">
+<!--
+    var GitInfoUpdater = Class.create({
+        container: null,
+        updateTimer: null,
+        performUpdateHandler: null,
+        config: null,
+        initialize: function (containerId, config) {
+            this.config = Object.extend({
+                updateUrl: '',
+                updateTimeout: 5000
+            }, config || {});
+            this.container = $(containerId);
+            this.performUpdateHandler = this.performUpdate.bind(this);
+            if (this.container instanceof Element) {
+                this.scheduleUpdate();
+            } 
+        },
+
+        scheduleUpdate: function () {
+            this.cancelUpdate();
+            this.updateTimer = setTimeout(this.performUpdateHandler, this.config.updateTimeout);
+        },
+
+        cancelUpdate: function () {
+            if (this.updateTimer) {
+                clearTimeout(this.updateTimer);
+                this.updateTimer = null;
+            }
+        },
+
+        performUpdate: function () {
+            this.updateTimer = null;
+            var ajax = new Ajax.Request(this.config.updateUrl, {
+                method: 'post',
+                parameters: {'isAjax': true},
+                onSuccess: function (response) {
+                    console.dir(response);
+                    if (response.isJson) {
+                    }
+                }.bind(this),
+                onComplete: function () {
+                    this.scheduleUpdate();
+                }.bind(this)
+            });
+        }
+    });
+
+    new GitInfoUpdater('gitInfo', <?php echo $this->getJsonConfig(); ?>);
+//-->
+</script>
+<?php endif; ?>

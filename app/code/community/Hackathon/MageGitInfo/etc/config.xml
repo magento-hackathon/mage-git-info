@@ -73,13 +73,13 @@
     </global>
     <admin>
         <routers>
-            <Hackathon_MageGitInfo>
-                <use>admin</use>
+            <adminhtml>
                 <args>
-                    <module>Hackathon_MageGitInfo</module>
-                    <frontName>magegitinfo</frontName>
+                    <modules>
+                        <Hackathon_MageGitInfo after="Mage_Adminhtml">Hackathon_MageGitInfo_Adminhtml</Hackathon_MageGitInfo>
+                    </modules>
                 </args>
-            </Hackathon_MageGitInfo>
+            </adminhtml>
         </routers>
     </admin>
     <adminhtml>
