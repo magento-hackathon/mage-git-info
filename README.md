@@ -2,26 +2,34 @@
 
 Magento Module to show the git branch of the current Magento (possible switch branches as well).
 
+## Done
+0. Show Git Branch in the Backend
+0. List branches
+0. Show current commit-sha-hash
+0. Show unstaged or new files (Dirt checker)
+0. Show commit logs
 
 ## Ideas
 
+0. Format Log Output (Tom)
+0. Show branch list as a drop-down with pre-selected current branch (Stephan)
+0. Show modified files in a popup (Tom)
+0. Show new/untracked files in a popup (Tom)
+0. Switch branches (Andre)
+0. Checking Branch state by AJAX every 2sek with configuration option to define the refreshing time (Anjey)
 
-0. Show Git Branch in the Backend
+
 0. List branches
   * display merged/not merged branches differently
   * display branch descriptions
-0. Show current commit-sha-hash
-0. Show unstaged or new files (Dirt checker)
-0. If you click on the commit-sha you get a git log
-0. Switch branches
-0. Checkout/Revert modified files
-0. removed new/untracked files
-0. Checking Branch state by AJAX every 2sek
 0. ACL-rules for
   * read information
   * switch branches
-  * change or remove files (modified or untracked)
 0. Submodule-Handling?
+
+## Discarded features
+0. Checkout/Revert modified files
+0. removed new/untracked files
 
 ## Roadmap
 
