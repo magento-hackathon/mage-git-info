@@ -1,1 +1,5 @@
-YOUR GIT BRANCH INFO
+<?php echo $this->getCurrentBranch() ?>
+<?php foreach ($this->getBranches() as $branch): ?>
+    <?php echo $branch; ?>
+<?php endforeach; ?>
+

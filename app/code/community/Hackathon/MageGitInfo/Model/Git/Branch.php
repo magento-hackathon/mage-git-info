@@ -33,28 +33,33 @@
  * @version   $Id:$
  * @since     0.1.0
  */
-class Hackathon_MageGitInfo_Block_Adminhtml_Git_Branch extends Hackathon_MageGitInfo_Block_Adminhtml_Git_Abstract
+class Hackathon_MageGitInfo_Model_Git_Branch extends Hackathon_MageGitInfo_Model_Git
 {
-    /**
-     * @var Hackathon_MageGitInfo_Model_Git_Branch
-     */
-    protected $branch
+    protected $branches = array();
 
-    /**
-     * Constructor
-     */
-    protected function _construct()
+    public function branch()
     {
-        $this->status = Mage::getModel("magegitinfo/git_branch")->branch();
-    }
+        $this->exec('git branch');
 
-    public function getBranches()
-    {
-        return $this->branch->getBranches();
+        foreach ($this->output as $line) {
+            $state = substr($line, 0, 1);
+            $branch = substr($line, 2);
+            if ('*' == $state) {
+                $this->currentBranch = $branch;
+            }
+            $this->branches[] = $branch;
+        }
+        return $this;
     }
 
     public function getCurrentBranch()
     {
-        return $this->branch->getCurrentBranch();
+        return $this->getCurrentBranch();
+    }
+
+    public function getBranches()
+    {
+        return $this->getBranches();
     }
 }
+
