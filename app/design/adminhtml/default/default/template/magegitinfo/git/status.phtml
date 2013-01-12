@@ -1,1 +1,32 @@
-YOUR GIT STATUS INFO
+<?php $status = $this->getStatus(); ?>
+<ul>
+    <li><?php echo $this->__("Current branch: ");?> <?php echo $status->getCurrentBranch(); ?></li>
+    <li>
+        <?php if (false === $status->isDirty()): ?>
+        <?php echo $this->__("Workspace is clean"); ?>
+        <?php else: ?>
+        <?php echo $this->__("Workspace is dirty"); ?>
+        <?php endif; ?>
+    </li>
+    <?php if (0 < count($status->getChangedFiles())): ?>
+    <li>
+        <?php echo $this->__("Changed files");?>
+        <ul>
+            <?php foreach ($status->getChangedFiles() as $file): ?>
+            <li><?php echo $file; ?></li>
+            <?php endforeach; ?>
+        </ul>
+    </li>
+    <?php endif; ?>
+    <?php if (0 < count($status->getUntrackedFiles())): ?>
+    <li>
+        <?php echo $this->__("Untracked files");?>
+        <ul>
+            <?php foreach ($status->getUntrackedFiles() as $file): ?>
+            <li><?php echo $file; ?></li>
+            <?php endforeach; ?>
+        </ul>
+    </li>
+    <?php endif; ?>
+</ul>
+

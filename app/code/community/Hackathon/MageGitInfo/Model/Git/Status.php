@@ -69,6 +69,7 @@ class Hackathon_MageGitInfo_Model_Git_Status extends Hackathon_MageGitInfo_Model
                 $this->untrackedFiles[] = preg_replace('/^#\t/','', $line);
             }
         }
+        return $this;
     }
 
     public function getCurrentBranch()
@@ -92,6 +93,11 @@ class Hackathon_MageGitInfo_Model_Git_Status extends Hackathon_MageGitInfo_Model
     public function getUntrackedFiles()
     {
         return $this->untrackedFiles;
+    }
+
+    public function isDirty()
+    {
+        return (self::STATE_DIRTY == $this->getState());
     }
 }
 

@@ -34,4 +34,22 @@
  * @since     0.1.0
  */
 class Hackathon_MageGitInfo_Block_Adminhtml_Git_Status extends Hackathon_MageGitInfo_Block_Adminhtml_Git_Abstract
-{ }
+{
+    /**
+     * @var Hackathon_MageGitInfo_Model_Git_Status
+     */
+    protected $status;
+
+    /**
+     * Constructor
+     */
+    protected function _construct()
+    {
+        $this->status = Mage::getModel("magegitinfo/git_status")->status();
+    }
+
+    public function getStatus()
+    {
+        return $this->status;
+    }
+}
