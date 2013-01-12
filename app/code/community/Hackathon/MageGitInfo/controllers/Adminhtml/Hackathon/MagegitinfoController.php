@@ -35,7 +35,7 @@
  * @version   $Id:$
  * @since     0.1.0
  */
-class Hackathon_MageGitInfo_Adminhtml_MagegitInfoController extends Mage_Adminhtml_Controller_Action
+class Hackathon_MageGitInfo_Adminhtml_Hackathon_MagegitInfoController extends Mage_Adminhtml_Controller_Action
 {
     /**
      * Update the git information block
@@ -46,11 +46,18 @@ class Hackathon_MageGitInfo_Adminhtml_MagegitInfoController extends Mage_Adminht
         $helper = Mage::helper("magegitinfo/data");
 
         try {
+            //Security - check if branch exist
+            if (false === in_array($branch, Mage::getModel("magegitinfo/git_branch")->branch()->getBranches())) {
+                throw new Exception("Branch is not existing");
+            }
             Mage::getModel("magegitinfo/git_checkout")->changeBranch($branch);
-        } catch (Exception $e) { }
+        } catch (Exception $e) {
+            $helper->log(
+                $helper->__("Couldn't change branch to '%s' because of '%s'", $branch, $e->getMessage())
+            );
+        }
 
-        $this->loadLayout();
-        $this->renderLayout();
+        $this->_redirectReferer();
 
     }
 
