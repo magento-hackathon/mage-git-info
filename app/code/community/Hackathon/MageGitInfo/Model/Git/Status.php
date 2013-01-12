@@ -55,7 +55,7 @@ class Hackathon_MageGitInfo_Model_Git_Status extends Hackathon_MageGitInfo_Model
         return $this->currentBranch;
     }
 
-    public function getCurrentBranch()
+    public function getState()
     {
         if (count($this->changedFiles) || count($this->untrackedFiles)) {
             return self::STATE_DIRTY;
