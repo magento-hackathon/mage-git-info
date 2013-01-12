@@ -40,14 +40,14 @@ class Hackathon_MageGitInfo_Block_Adminhtml_Git_Branch extends Hackathon_MageGit
     /**
      * @var Hackathon_MageGitInfo_Model_Git_Branch
      */
-    protected $branch
+    protected $branch;
 
     /**
      * Constructor
      */
     protected function _construct()
     {
-        $this->status = Mage::getModel("magegitinfo/git_branch")->branch();
+        $this->branch = Mage::getModel("magegitinfo/git_branch")->branch();
     }
 
     public function getBranches()

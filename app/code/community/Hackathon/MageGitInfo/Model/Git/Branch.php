@@ -35,7 +35,15 @@
  */
 class Hackathon_MageGitInfo_Model_Git_Branch extends Hackathon_MageGitInfo_Model_Git
 {
+    /**
+     * @var array
+     */
     protected $branches = array();
+
+    /**
+     * @var string
+     */
+    protected $currentBranch = "";
 
     public function branch()
     {
@@ -54,12 +62,12 @@ class Hackathon_MageGitInfo_Model_Git_Branch extends Hackathon_MageGitInfo_Model
 
     public function getCurrentBranch()
     {
-        return $this->getCurrentBranch();
+        return $this->currentBranch;
     }
 
     public function getBranches()
     {
-        return $this->getBranches();
+        return $this->branches;
     }
 }
 
