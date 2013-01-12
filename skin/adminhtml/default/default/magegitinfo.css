@@ -3,3 +3,12 @@
     width: 300px;
     text-align: left;
 }
+
+.git_informations li {
+    font-weight:bold;
+}
+
+.git_informations li ul li {
+    margin-left: 10px;
+    font-weight: normal;
+}

@@ -8,7 +8,7 @@
 </li>
 <?php if (0 < count($status->getChangedFiles())): ?>
 <li class="changed_files">
-    <?php echo $this->__("Changed files");?>
+    <?php echo $this->__("Changed files: ");?>
     <ul>
         <?php foreach ($status->getChangedFiles() as $file): ?>
         <li><?php echo $file; ?></li>
@@ -18,7 +18,7 @@
 <?php endif; ?>
 <?php if (0 < count($status->getUntrackedFiles())): ?>
 <li class="untracked_files">
-    <?php echo $this->__("Untracked files");?>
+    <?php echo $this->__("Untracked files: ");?>
     <ul>
         <?php foreach ($status->getUntrackedFiles() as $file): ?>
         <li><?php echo $file; ?></li>
