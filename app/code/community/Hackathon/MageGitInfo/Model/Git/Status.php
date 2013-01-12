@@ -51,8 +51,10 @@ class Hackathon_MageGitInfo_Model_Git_Status extends Hackathon_MageGitInfo_Model
         $this->exec('git status');
         
         foreach ($this->output as $line) {
-            if (preg_match('/^# On branch \(.*\)/', $line, $matches)) {
-                print_r($matches);
+            if (preg_match('/^# On branch (.*)/', $line, $matches)) {
+                if (count($matches) == 2) {
+                    $this->currentBranch = $matches[1];
+                }
             }
             else if ('# Untracked files:' == $line) {
                 $this->mode = self::MODE_UNTRACKED_BEFORE_FILES;
@@ -67,7 +69,6 @@ class Hackathon_MageGitInfo_Model_Git_Status extends Hackathon_MageGitInfo_Model
                 $this->untrackedFiles[] = preg_replace('/^#\t/','', $line);
             }
         }
-        var_dump($this->untrackedFiles);
     }
 
     public function getCurrentBranch()
