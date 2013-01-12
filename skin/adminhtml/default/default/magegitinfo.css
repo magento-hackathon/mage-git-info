@@ -1,7 +1,10 @@
 .git_informations {
-    margin: 0 auto;
-    width: 300px;
+    background: none repeat scroll 0 0 #CCCCCC;
+    border: 1px solid #2F2F2F;
+    margin: 20px auto 0;
+    padding: 10px;
     text-align: left;
+    width: 300px;
 }
 
 .git_informations li {
