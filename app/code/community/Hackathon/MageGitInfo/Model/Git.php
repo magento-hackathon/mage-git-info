@@ -77,14 +77,31 @@ class Hackathon_MageGitInfo_Model_Git
         try {
             $statement = escapeshellarg($this->_getGitBinary()). ' ' . $statement;
             Mage::helper("magegitinfo/data")->log($statement);
-            $this->lastLine = exec($statement, $this->output, $this->statusCode);
+            $process = proc_open($statement, array(
+                1 => array('pipe', 'w'),
+                2 => array('pipe', 'w'),
+            ), $pipes);
+            if (is_resource($process)) {
+                $output = explode("\n", stream_get_contents($pipes[1]));
+                $errorOutput = explode("\n", stream_get_contents($pipes[2]));
+                fclose($pipes[1]);
+                fclose($pipes[2]);
+                $this->statusCode = proc_close($process);
+            } else {
+                throw new Hackathon_MageGitInfo_Model_Git_Exception(
+                    -1,
+                    array()
+                );
+            }
 
             if (0 != $this->statusCode) {
+                $this->output = $errorOutput;
                 throw new Hackathon_MageGitInfo_Model_Git_Exception(
                     $this->statusCode,
                     $this->output
                 );
             }
+            $this->output = $output;
         } catch (Exception $e) {
             throw $e;
         }
