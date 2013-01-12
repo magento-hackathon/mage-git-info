@@ -35,6 +35,13 @@
         </routers>
     </admin>
     <adminhtml>
+        <layout>
+            <updates>
+                <magegitinfo>
+                    <file>magegitinfo.xml</file>
+                </magegitinfo>
+            </updates>
+        </layout>
     </adminhtml>
     <frontend>
     </frontend>
