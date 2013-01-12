@@ -23,7 +23,7 @@
  * @since     0.1.0
  */
 /**
- * Abstract Git Class
+ * Dummy data helper for translation issues.
  *
  * @category  MageGitInfo
  * @package   Hackathon_MageGitInfo
@@ -35,59 +35,21 @@
  * @version   $Id:$
  * @since     0.1.0
  */
-class Hackathon_MageGitInfo_Model_Git
-{
-    const GIT_BINARY_NAME = 'git';
+class Hackathon_MageGitInfo_Block_Adminhtml_Git_Wrapper extends Hackathon_MageGitInfo_Block_Adminhtml_Git_Abstract
+{ 
 
-    /**
-     * @var string
-     */
-    protected $lastLine = "";
-
-    /**
-     * @var array
-     */
-    protected $output = array();
-
-    /**
-     * @var int
-     */
-    protected $statusCode = null;
-
-    protected function _getGitBinary()
+    public function getJsonConfig()
     {
-        $gitName = Mage::getStoreConfig('magegitinfo/params/git_binary');
-        if (file_exists($gitName) && is_executable($gitName)) {
-            return $gitName;
-        } else {
-            return self::GIT_BINARY_NAME;
-        }
+        return Mage::helper('core')->jsonEncode(array(
+            // TODO: Add config value for that
+            'updateTimeout' => 5000,
+            'updateUrl'     => $this->getUrl('adminhtml/ajax/mageGitUpdate'),
+        ));
+    }
+    
+    public function getIncludeUpdater()
+    {
+        return true;//Mage::getStoreConfig($path)
     }
 
-    /**
-     * @param sring $statement
-     * @returns string
-     * @throws Hackathon_MageGitInfo_Model_Git_Exception
-     */
-    public function exec($statement)
-    {
-        $output = array();
-        $statusCode = null;
-
-        try {
-            $statement = escapeshellarg($this->_getGitBinary()). ' ' . $statement;
-            Mage::helper("magegitinfo/data")->log($statement);
-            $this->lastLine = exec($statement, $this->output, $this->statusCode);
-
-            if (0 != $this->statusCode) {
-                throw new Hackathon_MageGitInfo_Model_Git_Exception(
-                    $this->statusCode,
-                    $this->output
-                );
-            }
-        } catch (Exception $e) {
-            throw $e;
-        }
-
-    }
 }

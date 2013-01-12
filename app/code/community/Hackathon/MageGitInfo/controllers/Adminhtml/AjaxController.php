@@ -23,7 +23,7 @@
  * @since     0.1.0
  */
 /**
- * Abstract Git Class
+ * Ajax Controller
  *
  * @category  MageGitInfo
  * @package   Hackathon_MageGitInfo
@@ -35,59 +35,19 @@
  * @version   $Id:$
  * @since     0.1.0
  */
-class Hackathon_MageGitInfo_Model_Git
+class Hackathon_MageGitInfo_Adminhtml_AjaxController extends Mage_Adminhtml_Controller_Action
 {
-    const GIT_BINARY_NAME = 'git';
-
     /**
-     * @var string
+     * Update the git information block
      */
-    protected $lastLine = "";
-
-    /**
-     * @var array
-     */
-    protected $output = array();
-
-    /**
-     * @var int
-     */
-    protected $statusCode = null;
-
-    protected function _getGitBinary()
+    public function mageGitUpdateAction()
     {
-        $gitName = Mage::getStoreConfig('magegitinfo/params/git_binary');
-        if (file_exists($gitName) && is_executable($gitName)) {
-            return $gitName;
+        die($this->getFullActionName());
+        if ($this->getRequest()->isAjax()) {
+            
         } else {
-            return self::GIT_BINARY_NAME;
+            $this->_forward('no_route');
         }
     }
-
-    /**
-     * @param sring $statement
-     * @returns string
-     * @throws Hackathon_MageGitInfo_Model_Git_Exception
-     */
-    public function exec($statement)
-    {
-        $output = array();
-        $statusCode = null;
-
-        try {
-            $statement = escapeshellarg($this->_getGitBinary()). ' ' . $statement;
-            Mage::helper("magegitinfo/data")->log($statement);
-            $this->lastLine = exec($statement, $this->output, $this->statusCode);
-
-            if (0 != $this->statusCode) {
-                throw new Hackathon_MageGitInfo_Model_Git_Exception(
-                    $this->statusCode,
-                    $this->output
-                );
-            }
-        } catch (Exception $e) {
-            throw $e;
-        }
-
-    }
+    
 }
