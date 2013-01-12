@@ -8,6 +8,8 @@ Magento Module to show the git branch of the current Magento (possible switch br
 
 0. Show Git Branch in the Backend
 0. List branches
+  * display merged/not merged branches differently
+  * display branch descriptions
 0. Show current commit-sha-hash
 0. Show unstaged or new files (Dirt checker)
 0. If you click on the commit-sha you get a git log
