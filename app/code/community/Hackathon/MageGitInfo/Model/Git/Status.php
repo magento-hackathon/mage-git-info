@@ -53,8 +53,8 @@ class Hackathon_MageGitInfo_Model_Git_Status extends Hackathon_MageGitInfo_Model
             $state = substr($line, 0, 2);
             $file = substr($line, 3);
             switch ($state) {
-                case '??': $this->untrackedFiles[] = file; break;
-                case ' M': $this->changedFiles[] = file; break;
+                case '??': $this->untrackedFiles[] = $file; break;
+                case ' M': $this->changedFiles[] = $file; break;
             }
         }
         return $this;
