@@ -88,6 +88,10 @@
                 <number_of_logs>5</number_of_logs>
                 <logging>1</logging>
             </params>
+            <ajax>
+                 <enabled>0</enabled>
+                 <update_interval>30</update_interval>
+            </ajax>
         </magegitinfo>
     </default>
 </config>
