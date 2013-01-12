@@ -45,7 +45,8 @@ class Hackathon_MageGitInfo_Model_Observer
      */
     public function appendGitInfoToFooter($observer)
     {
-        if ($observer->getBlock() instanceof Mage_Adminhtml_Block_Page_Footer) {
+        if ($observer->getBlock() instanceof Mage_Adminhtml_Block_Page_Footer
+            && true === Mage::getModel("magegitinfo/config")->getIsActive()) {
             $transport = $observer->getTransport();
             $block     = $observer->getBlock();
             $layout    = $block->getLayout();
