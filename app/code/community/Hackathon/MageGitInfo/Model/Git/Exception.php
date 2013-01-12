@@ -33,5 +33,46 @@
  * @version   $Id:$
  * @since     0.1.0
  */
-class Hackathon_MageGitInfo_Model_Git_Exception extends Exception
-{ }
+class Hackathon_MageGitInfo_Model_Git_Exception extends Mage_Core_Exception
+{
+    /**
+     * Git Output
+     * @var array
+     */
+    protected $_gitOutput = null;
+
+    /**
+     * Creates new Git Exception
+     * @param string $message
+     * @param int $statusCode
+     * @param array $output
+     */
+    public function __construct($statusCode = null, $output = null)
+    {
+        parent::__construct(
+            Mage::helper("magegitinfo")->__("Excec command returned with status code %s", $statusCode),
+            $statusCode
+        );
+
+        if (!empty($output)) {
+            $this->_gitOutput = $output;
+        }
+    }
+
+    /**
+     * Return Git Output for this Extensio
+     * @return array
+     */
+    public function getGitOutput()
+    {
+        return $this->_gitOutput;
+    }
+
+    public function __toString()
+    {
+        $output =  parent::__toString();
+        if (is_array($this->getGitOutput())) {
+            $output  .= "\n" . implode("\n", $this->getGitOutput());
+        }
+    }
+}

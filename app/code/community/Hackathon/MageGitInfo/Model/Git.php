@@ -64,8 +64,9 @@ class Hackathon_MageGitInfo_Model_Git
             $this->lastLine = exec($statement, $this->output, $this->statusCode);
 
             if (0 != $this->statusCode) {
-                throw Hackathon_MageGitInfo_Model_Git_Exception(
-                    Mage::helper("magegitinfo")->__("Excec command returned with status code %s", $this->statusCode)
+                throw new Hackathon_MageGitInfo_Model_Git_Exception(
+                    $this->statusCode,
+                    $this->output
                 );
             }
         } catch (Exception $e) {

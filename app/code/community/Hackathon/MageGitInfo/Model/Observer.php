@@ -33,20 +33,27 @@
      * @version   $Id:$
      * @since     0.1.0
      */
-    class Hackathon_MageGitInfo_Model_Log extends Hackathon_MageGitInfo_Model_Git
+class Hackathon_MageGitInfo_Model_Observer
+{
+    /**
+     * Append parcel announcement to html output.
+     *
+     * @param  $observer
+     * @return void
+     */
+    public function appendGitInfoToFooter($observer)
     {
-        public $output = array();
+        if ($observer->getBlock() instanceof Mage_Adminhtml_Block_Page_Footer) {
+            $transport = $observer->getTransport();
+            $block     = $observer->getBlock();
+            $layout    = $block->getLayout();
+            $html      = $transport->getHtml();
 
-        public function gitLog($numberOfLogs='1') {
-            $statement = 'git log -v -n' . $numberOfLogs;
-            $this->exec($statement);
-            $output = $this->output;
-            foreach ($output as $line){
-                if ($line != '' && is_numeric(strpos($line, 'commit')) || is_numeric(strpos($line, 'Author'))) {
-                    $line = str_replace('commit', '',$line);
-                    $formattedLogs[] = $line;
-                }
-            }
-            return $formattedLogs;
+            $mageGitInfoFooterHtml = $layout->getBlock("magegitinfo_wrapper")->renderView();
+            $html = $html . $mageGitInfoFooterHtml;
+
+            $transport->setHtml($html);
         }
     }
+
+}
