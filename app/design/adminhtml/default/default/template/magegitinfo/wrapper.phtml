@@ -40,10 +40,9 @@
             var ajax = new Ajax.Request(this.config.updateUrl, {
                 method: 'post',
                 parameters: {'isAjax': true},
+                loaderArea: false,
                 onSuccess: function (response) {
-                    console.dir(response);
-                    if (response.isJson) {
-                    }
+                    this.container.update(response.responseText);
                 }.bind(this),
                 onComplete: function () {
                     this.scheduleUpdate();
