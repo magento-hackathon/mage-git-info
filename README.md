@@ -1,5 +1,12 @@
 # Mage Git Info
 
+## Requirements
+
+* Magento
+* Git
+* exec()
+* Apache user needs rights to write .git-repository (only for change branch feature)
+
 Magento Module to show the git branch of the current Magento (possible switch branches as well).
 
 ## Done
@@ -8,17 +15,15 @@ Magento Module to show the git branch of the current Magento (possible switch br
 0. Show current commit-sha-hash
 0. Show unstaged or new files (Dirt checker)
 0. Show commit logs
+0. Show branch list as a drop-down with pre-selected current branch
+0. Switch branches
 
 ## Ideas
 
 0. Format Log Output (Tom)
-0. Show branch list as a drop-down with pre-selected current branch (Stephan)
 0. Show modified files in a popup (Tom)
 0. Show new/untracked files in a popup (Tom)
-0. Switch branches (Andre)
 0. Checking Branch state by AJAX every 2sek with configuration option to define the refreshing time (Anjey)
-
-
 0. List branches
   * display merged/not merged branches differently
   * display branch descriptions
@@ -44,10 +49,3 @@ Magento Module to show the git branch of the current Magento (possible switch br
 * Next to admin username
 * Exclamation: Shows unstages files
 * DropDown for List-Branches
-
-
-## Requirements
-
-* Magento
-* Git
-* exec()

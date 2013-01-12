@@ -35,7 +35,7 @@
  * @version   $Id:$
  * @since     0.1.0
  */
-class Hackathon_MageGitInfo_Adminhtml_IndexController extends Mage_Adminhtml_Controller_Action
+class Hackathon_MageGitInfo_Adminhtml_MagegitInfoController extends Mage_Adminhtml_Controller_Action
 {
     /**
      * Update the git information block
@@ -43,15 +43,12 @@ class Hackathon_MageGitInfo_Adminhtml_IndexController extends Mage_Adminhtml_Con
     public function changeBranchAction()
     {
         $branch = $this->getRequest()->getParam("branch");
-        $helper = Mage::helper("magegitinfo/data")-;
+        $helper = Mage::helper("magegitinfo/data");
 
         try {
             Mage::getModel("magegitinfo/git_checkout")->changeBranch($branch);
-        } catch (Exception $e) {
-            $helper->log(
-                $helper->__("Error changeing branches with message: '%s'", $e->getMessage())
-            );
-        }
+        } catch (Exception $e) { }
+
         $this->loadLayout();
         $this->renderLayout();
 

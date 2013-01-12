@@ -51,18 +51,25 @@ class Hackathon_MageGitInfo_Model_Git_Exception extends Mage_Core_Exception
      */
     public function __construct($statusCode = null, $output = null)
     {
+        $helper = Mage::helper("magegitinfo/data");
+        $errorMessage = $helper->__("Exec command returned with status code %s", $statusCode);
+
         parent::__construct(
-            Mage::helper("magegitinfo")->__("Excec command returned with status code %s", $statusCode),
+            $errorMessage,
             $statusCode
         );
 
         if (!empty($output)) {
             $this->_gitOutput = $output;
         }
+
+        //Error Logging
+        $helper->log($errorMessage);
+        $helper->log($this->__toString());
     }
 
     /**
-     * Return Git Output for this Extensio
+     * Return Git Output for this Extension
      * @return array
      */
     public function getGitOutput()
@@ -70,6 +77,9 @@ class Hackathon_MageGitInfo_Model_Git_Exception extends Mage_Core_Exception
         return $this->_gitOutput;
     }
 
+    /**
+     * @return string|void
+     */
     public function __toString()
     {
         $output =  parent::__toString();

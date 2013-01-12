@@ -1,3 +1,4 @@
+<?php echo Mage::helper("magegitinfo/data")->__("Branch: ");?>
 <select name="branch" id="branch">
     <?php foreach ($this->getBranches() as $branch): ?>
         <option value="<?php echo $branch; ?>"<?php if ($branch == $this->getCurrentBranch()): ?>selected="selected"<?php endif; ?>>
@@ -6,12 +7,14 @@
     <?php endforeach; ?>
 </select>
 <script type="text/javascript">
+var CHANGE_BRANCH_URL = '<?php echo $this->getUrl('adminhtml/magegitinfo/changeBranch'); ?>';
+
 (function () {
     function switchBranch(evt) {
         var elem = Event.element(evt);
         if(elem){
             var value = elem.value;
-            setLocation('#');
+            setLocation(CHANGE_BRANCH_URL + 'branch/' + value);
         }
     }
     Event.observe('branch', 'change', switchBranch)
