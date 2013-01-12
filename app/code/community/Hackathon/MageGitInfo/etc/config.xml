@@ -23,19 +23,6 @@
  * @version   $Id:$
  * @since     0.1.0
  */
- /**
- * Dummy data helper for translation issues.
- *
- * @category  MageGitInfo
- * @package   Hackathon_MageGitInfo
- * @author    Tom Kadwill <tomkadwill@gmail.com>
- * @author    Stephan Hoyer <ste.hoyer@gmail.com>
- * @author    André Herrn <info@andre-herrn.de>
- * @author    Anjey Lobas <anjey.lobas@goodahead.com>
- * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
- * @version   $Id:$
- * @since     0.1.0
-*/
 -->
 <config>
     <modules>
@@ -73,13 +60,13 @@
     </global>
     <admin>
         <routers>
-            <Hackathon_MageGitInfo>
-                <use>admin</use>
+            <adminhtml>
                 <args>
-                    <module>Hackathon_MageGitInfo</module>
-                    <frontName>magegitinfo</frontName>
+                    <modules>
+                        <Hackathon_MageGitInfo after="Mage_Adminhtml">Hackathon_MageGitInfo_Adminhtml</Hackathon_MageGitInfo>
+                    </modules>
                 </args>
-            </Hackathon_MageGitInfo>
+            </adminhtml>
         </routers>
     </admin>
     <adminhtml>
@@ -99,6 +86,7 @@
                 <active>0</active>
                 <git_binary>git</git_binary>
                 <number_of_logs>"5"</number_of_logs>
+                <logging>1</logging>
             </params>
         </magegitinfo>
     </default>

@@ -23,7 +23,7 @@
  * @since     0.1.0
  */
 /**
- * Dummy data helper for translation issues.
+ * Git Status Command Class
  *
  * @category  MageGitInfo
  * @package   Hackathon_MageGitInfo

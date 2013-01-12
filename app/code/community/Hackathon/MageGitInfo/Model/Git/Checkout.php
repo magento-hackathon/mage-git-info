@@ -17,42 +17,44 @@
      * @author    Tom Kadwill <tomkadwill@gmail.com>
      * @author    Stephan Hoyer <ste.hoyer@gmail.com>
      * @author    André Herrn <info@andre-herrn.de>
-     * @author    Anjey Lobas <anjey.lobas@goodahead.com>
      * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
      * @version   $Id:$
      * @since     0.1.0
      */
     /**
-     * Config Class
+     * Git Checkout Command Class
      *
      * @category  MageGitInfo
      * @package   Hackathon_MageGitInfo
      * @author    Tom Kadwill <tomkadwill@gmail.com>
      * @author    Stephan Hoyer <ste.hoyer@gmail.com>
      * @author    André Herrn <info@andre-herrn.de>
-     * @author    Anjey Lobas <anjey.lobas@goodahead.com>
      * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
      * @version   $Id:$
      * @since     0.1.0
      */
-class Hackathon_MageGitInfo_Model_Config
+class Hackathon_MageGitInfo_Model_Git_Checkout extends Hackathon_MageGitInfo_Model_Git
 {
     /**
-     * Check if module is activated
+     * Switch branches
      *
-     * @return bool
+     * @param string $branchName
+     * @return Hackathon_MageGitInfo_Model_Git_Checkout
+     * @throws Hackathon_MageGitInfo_Model_Git_Exception
      */
-    public function getIsActive()
+    public function changeBranch($branchName = "")
     {
-        return (1 == Mage::getStoreConfig("magegitinfo/params/active"));
-    }
-    /**
-     * Check if logging is enabled
-     *
-     * @return bool
-     */
-    public function getLoggingIsEnabled()
-    {
-        return (1 == Mage::getStoreConfig("magegitinfo/params/logging"));
+        //Check if branchname was given
+        if (true === empty($branchName)) {
+            throw new Hackathon_MageGitInfo_Model_Git_Exception(
+                Mage::helper("magegitinfo")  ->__("No branchname was given for changing branches")
+            );
+        }
+
+        $this->exec(
+            sprintf("checkout %s", $branchName)
+        );
+
+        return $this;
     }
 }

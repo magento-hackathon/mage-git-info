@@ -23,7 +23,7 @@
  * @since     0.1.0
  */
 /**
- * Dummy data helper for translation issues.
+ * Data helper for logging and translation
  *
  * @category  MageGitInfo
  * @package   Hackathon_MageGitInfo
@@ -37,5 +37,18 @@
  */
 class Hackathon_MageGitInfo_Helper_Data extends Mage_Core_Helper_Abstract
 {
+    const LOG_FILE_NAME = "magegitinfo.log";
 
+    /**
+     * Log message for var/log/...
+     *
+     * @param $message
+     * @return void
+     */
+    public function log($message)
+    {
+        if (true === Mage::getModel("magegitinfo/config")->getLoggingIsEnabled()) {
+            Mage::log($message, null, self::LOG_FILE_NAME, true);
+        }
+    }
 }
