@@ -37,27 +37,50 @@
  */
 class Hackathon_MageGitInfo_Model_Log extends Hackathon_MageGitInfo_Model_Git
 {
-    public $output = array();
+    /**
+     * @var array
+     */
+    protected $logEntries = array();
 
-    public function gitLog($numberOfLogs='1') {
+    public function log($numberOfLogs='1') {
         $statement = 'log -v -n' . (string)$numberOfLogs;
         $this->exec($statement);
-        $output = $this->output;
         $formattedLogsString = '';
-        foreach ($output as $line){
-            if ($line != '' && is_numeric(strpos($line, 'commit')) || is_numeric(strpos($line, 'Author'))) {
+
+        $tmpLogEntry = array();
+        $i = 0;
+        foreach ($this->output as $line){
+            if ($line != '') {
                 if (is_numeric(strpos($line, 'commit')) & strpos($line, 'commit') == 0) {
+                    if ($i != 0) {
+                        $this->logEntries[] = $tmpLogEntry;
+                        $tmpLogEntry = array();
+                    }
                     $line = str_replace('commit', '',$line);
-                    $class = 'commit';
+                    $tmpLogEntry["hash"] = $line;
                 } elseif (is_numeric(strpos($line, 'Author'))) {
-                    $class = 'author';
+                    $line = str_replace('Author: ', '',$line);
+                    $tmpLogEntry["author"] = $line;
+                } elseif (is_numeric(strpos($line, 'Date'))) {
+                    $line = str_replace('Date: ', '',$line);
+                    $tmpLogEntry["date"] = $line;
                 } else {
-                    $class = 'comment';
+                    $tmpLogEntry["message"] .= $line;
                 }
-                $formattedLogs[] = $line;
-                $formattedLogsString = $formattedLogsString . '<span class="'. $class . '">' . $line . '</span></br>';
+                $i++;
             }
         }
-        return $formattedLogsString;
+        $this->logEntries[] = $tmpLogEntry;
+        return $this;
+    }
+
+    /**
+     * Get log entries
+     *
+     * @return array
+     */
+    public function getLogEntries()
+    {
+        return $this->logEntries;
     }
 }

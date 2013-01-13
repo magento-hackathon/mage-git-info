@@ -1,13 +1,15 @@
 # Mage Git Info
 
+Magento Module to show the git branch of the current Magento (possible switch branches as well).
+
+If the shop is under management of GIT you can see informations about the current branch, last commits and modified or untracked files in the Magento Backend Footer.
+
 ## Requirements
 
 * Magento
 * Git
 * exec()
 * Apache user needs rights to write .git-repository (only for change branch feature)
-
-Magento Module to show the git branch of the current Magento (possible switch branches as well).
 
 ## Done
 0. Show Git Branch in the Backend
@@ -17,35 +19,22 @@ Magento Module to show the git branch of the current Magento (possible switch br
 0. Show commit logs
 0. Show branch list as a drop-down with pre-selected current branch
 0. Switch branches
-
-## Ideas
-
-0. Format Log Output (Tom)
-0. Show modified files in a popup (Tom)
-0. Show new/untracked files in a popup (Tom)
-0. Checking Branch state by AJAX every 2sek with configuration option to define the refreshing time (Anjey)
-0. List branches
-  * display merged/not merged branches differently
-  * display branch descriptions
+0. Format Log Output
 0. ACL-rules for
   * read information
   * switch branches
+
+## Ideas
+
+0. Show modified files in a popup (Tom)
+0. Show new/untracked files in a popup (Tom)
+0. Checking Branch state by AJAX every 2sek with configuration option to define the refreshing time (Anjey)
+0. ACLs for different informations (show only branch, logs or modified/untracked files)
+0. List branches
+  * display merged/not merged branches differently
+  * display branch descriptions
 0. Submodule-Handling?
 
 ## Discarded features
 0. Checkout/Revert modified files
 0. removed new/untracked files
-
-## Roadmap
-
-* Define priority of the features => Prio 1 (hackathon), Prio 2 (maybe hackathon), Prio 3 (later ) -> done
-* Start and commit skeleton module
-* Start Abstract class for shell access
-* Assign todos to us
-
-## Interface
-
-* Footer of the admin-backend (Next to Magento Version)
-* Next to admin username
-* Exclamation: Shows unstages files
-* DropDown for List-Branches

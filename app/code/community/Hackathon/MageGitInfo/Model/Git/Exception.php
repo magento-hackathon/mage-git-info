@@ -77,6 +77,11 @@ class Hackathon_MageGitInfo_Model_Git_Exception extends Mage_Core_Exception
         return $this->_gitOutput;
     }
 
+    public function getErrorCode()
+    {
+        return $this->code;
+    }
+
     /**
      * @return string|void
      */

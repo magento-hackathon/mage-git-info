@@ -34,12 +34,20 @@
                         	<config>
 	                        	<children>
 		                            <magegitinfo translate="title" module="log">
-		                                <title>WebShopApps Logger</title>
+		                                <title>MageGitInfo</title>
 		                            </magegitinfo>
 	                         	</children>
                            	</config>
                         </children>
                     </system>
+                    <show_git_info translate="title">
+                        <title>Show git info</title>
+                        <sort_order>200</sort_order>
+                    </show_git_info>
+                    <switch_branches translate="title">
+                        <title>Switch Branches</title>
+                        <sort_order>300</sort_order>
+                    </switch_branches>
                 </children>
             </admin>
         </resources>
