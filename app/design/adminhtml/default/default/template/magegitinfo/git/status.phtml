@@ -16,7 +16,7 @@
     </ul>
 </li>
 <?php endif; ?>
-<?php if (0 < count($status->getUntrackedFiles())): ?>
+<?php if (0 < count($status->getUntrackedFiles()) && $this->showUntracked()): ?>
 <li class="untracked_files">
     <?php echo $this->__("Untracked files: ");?>
     <ul>

@@ -59,4 +59,12 @@ class Hackathon_MageGitInfo_Block_Adminhtml_Git_Status extends Hackathon_MageGit
     {
         return $this->status;
     }
+
+    /**
+     * Show untracked files
+     */
+    public function showUntracked()
+    {
+        return Mage::getStoreConfigFlag('magegitinfo/params/show_untracked_files');
+    }
 }

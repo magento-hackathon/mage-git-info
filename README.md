@@ -18,23 +18,25 @@ possible.
 
 Install it with modman
 
-  modman clone https://github.com/magento-hackathon/mage-git-info.git
+    modman clone https://github.com/magento-hackathon/mage-git-info.git
 
 Install with composer
 
 Add the module to your dependencies in your composer.json
 
-   "require": {
-     "hackathon/magegitinfo": "dev-master"
-   },
+    "require": {
+      "hackathon/magegitinfo": "dev-master"
+    },
 
 After that, run
   
-  $ composter.phar install
+    $ composer.phar install
+
+See https://github.com/magento-hackathon/composer-repository for more information.
 
 ## Configuration
 
-In System->Configuration->Git info you can enable the module. There are also
+In *System->Configuration->Git info* you can enable the module. There are also
 several ACL configurations to manage access to all functions.
 
 ## Ideas
