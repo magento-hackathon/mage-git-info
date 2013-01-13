@@ -12,6 +12,7 @@
 <!--
     new Ajax.PeriodicalUpdater({success: 'gitInfo'}, '<?php echo $this->getUpdaterUrl(); ?>',{
         method: 'post',
+        evalScripts: true,
         frequency: <?php echo $this->getUpdaterFrequency(); ?>,
         parameters: {'isAjax': true},
         loaderArea: false,
