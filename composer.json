@@ -1,0 +1,23 @@
+{
+  "name": "hackathon/magegitinfo",
+  "license": ["OSL-3.0"],
+  "type": "magento-module",
+  "description": "This module show information about current git status in the admin footer and allows to switch branches from there",
+  "homepage": "https://github.com/magento-hackathon/mage-git-info",
+  "authors":[{
+    "name": "Tom Kadwill",
+    "email": "tomkadwill@gmail.com"
+  }, {
+    "name": "Stephan Hoyer",
+    "email": "ste.hoyer@gmail.com"
+  }, {
+    "name": "André Herrn",
+    "email": "info@andre-herrn.de"
+  }, {
+    "name": "Anjey Lobas",
+    "email": "anjey.lobas@goodahead.com"
+  }], 
+  "require": {
+    "magento-hackathon/magento-composer-installer": "dev-master"
+  }
+}

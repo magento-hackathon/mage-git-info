@@ -1,8 +1,11 @@
 # Mage Git Info
 
-Magento Module to show the git branch of the current Magento (possible switch branches as well).
+This Magento Module shows current git status of the shops repository in 
+the Footer section of the admin. It shows all available branches and current
+status incl. all untrackt and modified files.
 
-If the shop is under management of GIT you can see informations about the current branch, last commits and modified or untracked files in the Magento Backend Footer.
+If the webserver has appropriate configuration also switching branches is
+possible.
 
 ## Requirements
 
@@ -11,24 +14,34 @@ If the shop is under management of GIT you can see informations about the curren
 * proc_open()
 * Apache user needs rights to write .git-repository (only for change branch feature)
 
-## Done
-0. Show Git Branch in the Backend
-0. List branches
-0. Show current commit-sha-hash
-0. Show unstaged or new files (Dirt checker)
-0. Show commit logs
-0. Show branch list as a drop-down with pre-selected current branch
-0. Switch branches
-0. Format Log Output
-0. ACL-rules for
-  * read information
-  * switch branches
+## Installation
+
+Install it with modman
+
+  modman clone https://github.com/magento-hackathon/mage-git-info.git
+
+Install with composer
+
+Add the module to your dependencies in your composer.json
+
+    "require": {
+      "hackathon/magegitinfo": "dev-master"
+    },
+
+After that, run
+  
+    $ composter.phar install
+
+## Configuration
+
+In System->Configuration->Git info you can enable the module. There are also
+several ACL configurations to manage access to all functions.
 
 ## Ideas
 
 0. Show modified files in a popup (Tom)
 0. Show new/untracked files in a popup (Tom)
-0. Checking Branch state by AJAX every 2sek with configuration option to define the refreshing time (Anjey)
+0. Testing with ecomdev
 0. ACLs for different informations (show only branch, logs or modified/untracked files)
 0. List branches
   * display merged/not merged branches differently
