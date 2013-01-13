@@ -38,14 +38,28 @@
 class Hackathon_MageGitInfo_Block_Adminhtml_Git_Wrapper extends Hackathon_MageGitInfo_Block_Adminhtml_Git_Abstract
 { 
 
-    public function getJsonConfig()
+    /**
+     * Return URL for Git Info block update
+     * @return string
+     */
+    public function getUpdaterUrl()
     {
-        return Mage::helper('core')->jsonEncode(array(
-            'updateTimeout' => Mage::getStoreConfig('magegitinfo/ajax/update_interval') * 1000,
-            'updateUrl'     => $this->getUrl('adminhtml/hackathon_mageGitInfo_ajax/mageGitUpdate'),
-        ));
+        return $this->getUrl('adminhtml/hackathon_mageGitInfo_ajax/mageGitUpdate');
     }
-    
+
+    /**
+     * Return update interval
+     * @return int
+     */
+    public function getUpdaterFrequency()
+    {
+        return Mage::getStoreConfig('magegitinfo/ajax/update_interval');
+    }
+
+    /**
+     * Return true if we should include JS for automatic update and updater container
+     * @return boolean
+     */
     public function getIncludeUpdater()
     {
         return Mage::getStoreConfig('magegitinfo/ajax/enabled') && 
