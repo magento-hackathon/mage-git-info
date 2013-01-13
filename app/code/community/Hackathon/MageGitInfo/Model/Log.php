@@ -65,7 +65,11 @@ class Hackathon_MageGitInfo_Model_Log extends Hackathon_MageGitInfo_Model_Git
                     $line = str_replace('Date: ', '',$line);
                     $tmpLogEntry["date"] = $line;
                 } else {
-                    $tmpLogEntry["message"] .= $line;
+                    if (!array_key_exists('message', $tmpLogEntry)) {
+                        $tmpLogEntry["message"] = $line;
+                    } else {
+                        $tmpLogEntry["message"] .= $line;
+                    }
                 }
                 $i++;
             }
