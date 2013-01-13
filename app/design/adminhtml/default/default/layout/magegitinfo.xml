@@ -25,13 +25,11 @@
 -->
 <layout>
     <default>
-        <reference name="before_body_end">
-            <block type="magegitinfo/adminhtml_git_wrapper" name="magegitinfo_wrapper" template="magegitinfo/wrapper.phtml">
-                <block type="magegitinfo/adminhtml_git_branch" name="magegitinfo_branch" template="magegitinfo/git/branch.phtml" />
-                <block type="magegitinfo/adminhtml_git_status" name="magegitinfo_status" template="magegitinfo/git/status.phtml" />
-                <block type="magegitinfo/adminhtml_git_log" name="magegitinfo_log" template="magegitinfo/git/log.phtml" />
-            </block>
-        </reference>
+        <block type="magegitinfo/adminhtml_git_wrapper" name="magegitinfo_wrapper" template="magegitinfo/wrapper.phtml">
+            <block type="magegitinfo/adminhtml_git_branch" name="magegitinfo_branch" template="magegitinfo/git/branch.phtml" />
+            <block type="magegitinfo/adminhtml_git_status" name="magegitinfo_status" template="magegitinfo/git/status.phtml" />
+            <block type="magegitinfo/adminhtml_git_log" name="magegitinfo_log" template="magegitinfo/git/log.phtml" />
+        </block>
         <reference name="head">
             <action method="addCss"><name>magegitinfo.css</name></action>
         </reference>
