@@ -4,7 +4,7 @@
     margin: 20px auto 0;
     padding: 10px;
     text-align: left;
-    width: 300px;
+    width: 500px;
 }
 
 .git_informations li {
@@ -14,4 +14,9 @@
 .git_informations li ul li {
     margin-left: 10px;
     font-weight: normal;
+}
+
+.git_informations ul.status > li > ul {
+    max-height: 200px;
+    overflow: auto;
 }
