@@ -8,7 +8,7 @@ If the shop is under management of GIT you can see informations about the curren
 
 * Magento
 * Git
-* exec()
+* proc_open()
 * Apache user needs rights to write .git-repository (only for change branch feature)
 
 ## Done
