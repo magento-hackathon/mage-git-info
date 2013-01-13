@@ -30,7 +30,7 @@ Add the module to your dependencies in your composer.json
 
 After that, run
   
-    $ composter.phar install
+    $ composer.phar install
 
 ## Configuration
 
