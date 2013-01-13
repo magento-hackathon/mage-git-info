@@ -24,13 +24,13 @@ Install with composer
 
 Add the module to your dependencies in your composer.json
 
-   "require": {
-     "hackathon/magegitinfo": "dev-master"
-   },
+    "require": {
+      "hackathon/magegitinfo": "dev-master"
+    },
 
 After that, run
   
-  $ composter.phar install
+    $ composter.phar install
 
 ## Configuration
 
