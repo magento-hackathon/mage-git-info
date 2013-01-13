@@ -23,12 +23,14 @@ If the shop is under management of GIT you can see informations about the curren
 0. ACL-rules for
   * read information
   * switch branches
+0. Checking Branch state by AJAX every 2sek with configuration option to define the refreshing time (Anjey)
 
 ## Ideas
 
 0. Show modified files in a popup (Tom)
 0. Show new/untracked files in a popup (Tom)
-0. Checking Branch state by AJAX every 2sek with configuration option to define the refreshing time (Anjey)
+0. Composer File
+0. Testing with ecomdev
 0. ACLs for different informations (show only branch, logs or modified/untracked files)
 0. List branches
   * display merged/not merged branches differently
