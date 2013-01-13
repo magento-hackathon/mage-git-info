@@ -75,12 +75,20 @@ class Hackathon_MageGitInfo_Adminhtml_Hackathon_MagegitInfoController
             $msg = 'Successfully switched to branche %s';
             $session->addSuccess($helper->__($msg , $branch));
         } catch (Hackathon_MageGitInfo_Model_Git_Exception $e) {
-            if (128 == $e->getErrorCode()) {
-                $msg = 'Your webserver has no permissions to switch branches';
-                $session->addError($helper->__($msg));
-            } else {
+            switch ($e->getErrorCode()) {
+            case 128:
+                $msg = $helper->__('Your webserver has no permissions to switch branches');
+                break;
+            case 1:
+                $output = $e->getGitOutput();
+                $msg = array_shift($output) . "<hr/>" . implode("<br/>", $output);
+                break;
+            default:
+                $msg = $e->getMessage();
+                $msg .= "<hr/>" . implode("<br/>", $e->getGitOutput());
                 Mage::logException($e);
             }
+            $session->addError($msg);
         }
     }
 
