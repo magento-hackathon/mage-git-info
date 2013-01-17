@@ -18,6 +18,6 @@
     "email": "anjey.lobas@goodahead.com"
   }], 
   "require": {
-    "magento-hackathon/magento-composer-installer": "dev-master"
+    "magento-hackathon/magento-composer-installer": "*"
   }
 }
