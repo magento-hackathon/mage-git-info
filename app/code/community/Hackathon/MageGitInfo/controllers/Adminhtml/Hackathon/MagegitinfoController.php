@@ -50,7 +50,7 @@ class Hackathon_MageGitInfo_Adminhtml_Hackathon_MagegitInfoController
     {
         $session = $this->getSession();
         $helper = Mage::helper("magegitinfo/data");
-        if (!$this->isAllowed()) {
+        if (!$this->isAllowed() || !Mage::getModel("magegitinfo/config")->getIsSwitchingBranchesIsAllowed()) {
             $msg = 'You are not allowed to switch branches';
             $session->addError($helper->__($msg));
         } else {
@@ -72,7 +72,7 @@ class Hackathon_MageGitInfo_Adminhtml_Hackathon_MagegitInfoController
         $helper = Mage::helper("magegitinfo/data");
         try {
             Mage::getModel("magegitinfo/git_checkout")->changeBranch($branch);
-            $msg = 'Successfully switched to branche %s';
+            $msg = 'Successfully switched to branch "%s"';
             $session->addSuccess($helper->__($msg , $branch));
         } catch (Hackathon_MageGitInfo_Model_Git_Exception $e) {
             switch ($e->getErrorCode()) {

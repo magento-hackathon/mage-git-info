@@ -59,4 +59,14 @@ class Hackathon_MageGitInfo_Block_Adminhtml_Git_Branch extends Hackathon_MageGit
     {
         return $this->branch->getCurrentBranch();
     }
+
+    /**
+     * Check if switching branches is allowed
+     *
+     * @return bool
+     */
+    public function isAllowedToSwitchBranches()
+    {
+        return Mage::getModel("magegitinfo/config")->getIsSwitchingBranchesIsAllowed();
+    }
 }

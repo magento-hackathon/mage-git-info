@@ -1,5 +1,5 @@
 <?php echo Mage::helper("magegitinfo/data")->__("Branch: ");?>
-<select name="branch" id="branch">
+<select name="branch" id="branch" <?php if (!$this->isAllowedToSwitchBranches()): ?>disabled="disabled"<?php endif; ?>>
     <?php foreach ($this->getBranches() as $branch): ?>
         <option value="<?php echo $branch; ?>"<?php if ($branch == $this->getCurrentBranch()): ?>selected="selected"<?php endif; ?>>
             <?php echo $branch; ?>

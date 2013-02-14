@@ -46,6 +46,7 @@ class Hackathon_MageGitInfo_Model_Config
     {
         return (1 == Mage::getStoreConfig("magegitinfo/params/active"));
     }
+
     /**
      * Check if logging is enabled
      *
@@ -54,5 +55,15 @@ class Hackathon_MageGitInfo_Model_Config
     public function getLoggingIsEnabled()
     {
         return (1 == Mage::getStoreConfig("magegitinfo/params/logging"));
+    }
+
+    /**
+     * Check if switching branches is allowed
+     *
+     * @return bool
+     */
+    public function getIsSwitchingBranchesIsAllowed()
+    {
+        return (1 == Mage::getStoreConfig("magegitinfo/params/allow_switching_branch"));
     }
 }

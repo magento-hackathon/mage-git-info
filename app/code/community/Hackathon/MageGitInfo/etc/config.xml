@@ -86,6 +86,7 @@
                 <active>0</active>
                 <git_binary>git</git_binary>
                 <number_of_logs>5</number_of_logs>
+                <allow_switching_branch>0</allow_switching_branch>
                 <logging>1</logging>
             </params>
             <ajax>
