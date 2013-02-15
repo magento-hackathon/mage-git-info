@@ -65,17 +65,21 @@ class Hackathon_MageGitInfo_Model_Git
     }
 
     /**
+     * Execute Statement
+     * 
      * @param sring $statement
-     * @returns string
+     * @return string
      * @throws Hackathon_MageGitInfo_Model_Git_Exception
      */
     public function exec($statement)
     {
         $output = array();
         $statusCode = null;
+        $pipes = array();
 
         $statement = escapeshellarg($this->_getGitBinary()). ' ' . $statement;
         Mage::helper("magegitinfo/data")->log($statement);
+
         $process = proc_open($statement, array(
             1 => array('pipe', 'w'),
             2 => array('pipe', 'w'),
